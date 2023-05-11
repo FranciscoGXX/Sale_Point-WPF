@@ -1,0 +1,381 @@
+﻿<Window x:Class="PuntoDeVenta.Views.Shop.PurchasesMade"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PuntoDeVenta.Views.Shop"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Title="PurchasesMade"  Height="500" Width="1015">
+    <Grid>
+        <Border Background="#fff">
+            <StackPanel>
+                <Border Height="130" Background="#FFF">
+                    <StackPanel>
+                        <Grid Background="#20262E" Height="45">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="920"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock 
+                        Text="Compras"
+                        HorizontalAlignment="Center"        
+                        VerticalAlignment="Center"
+                        Margin="8,0,2,0"
+                        FontSize="25"
+                        FontWeight="DemiBold"
+                        Foreground="#fff"
+                        />
+
+                            <Button
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            Margin="0 0 10 0" Click="HandlerExit"
+                            >
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border>
+                                            <Image
+                                            Source="C:\Users\Admin\Documents\Tutorial cSharp\MySelf Way\Personal practices\PuntoDeVenta\PuntoDeVenta\Sources\Icons\circleExit.png"
+                                            Width="30"
+                                            />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+
+                        </Grid>
+
+                        <Grid Margin="0 0 0 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Vertical" Margin="0 0 0 0"  Grid.Column="0">
+
+                              <Button 
+                              Content="Agregar nueva compra"
+                              Width="130"
+                              HorizontalAlignment="Left"
+                              Margin="10 10 0 0"
+                               Click="SwichToCreatePurchase"   
+                               />
+                                
+                            </StackPanel>
+
+                            <StackPanel 
+                          Orientation="Horizontal"
+                          HorizontalAlignment="Right"
+                          Margin="0 0 10 0"
+                          Grid.Column="1"  
+                            >
+
+                                <TextBox
+                              Name="SearchBox"  
+                              Width="150"
+                              Margin="15 0 0 0"
+                              Height="20"
+                              Text="Desc_Producto"  
+                                />
+
+                                <Button
+                             Margin="10 0 0 0"
+                             Content="Searchh"
+                             Height="20"
+                             Command="{Binding COMMANDSEARCH}"
+                             CommandParameter="{Binding ElementName=SearchBox, Path=Text}"   
+                             />
+
+                                <Button
+                                Margin="15 0 10 0"
+                                Content="Reset"
+                                Width="48"
+                                Height="20"
+                                Command="{Binding COMMANDRESETDATAGRID}"
+                                
+                            />
+
+                            </StackPanel>
+
+                        </Grid>
+
+                     <Border
+                      BorderBrush="#000"
+                      BorderThickness=".5"
+                      Margin="0 8 0 0"
+                      />
+
+                     <TextBlock
+                     Text="Compras Realizadas"
+                     FontSize="17"   
+                     TextDecorations="Underline"
+                     Margin="10 5 0 0"
+                     />
+
+
+                    </StackPanel>
+                </Border>
+
+                <Grid Margin="0 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="720"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                <DataGrid
+                Grid.Column="0"    
+                Height="320" 
+                Margin="0 0 0 0"    
+                Name="GVInventary"
+                AutoGenerateColumns="false"
+                VerticalAlignment="Top"    
+                ItemsSource="{Binding PURCHASELIST, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}"     
+                GotMouseCapture="HandlerSeletedItem"
+                >
+
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn MinWidth="95" Binding="{Binding Path=DATE}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock 
+                                Text="Fecha"
+                                FontSize="18"         
+                            />
+
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn MinWidth="100" Binding="{Binding Path=NAME}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock 
+                                Text="Desc_Producto"
+                                FontSize="18"
+                                />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn MinWidth="100" Binding="{Binding Path=PRICEOFSHOP}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock 
+                                Text="Precio_Compra"
+                                FontSize="18"
+                                />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn MinWidth="80" Binding="{Binding Path=AMOUNT}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock 
+                                Text="Cantidad"
+                                FontSize="18"
+                                />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn MinWidth="70" Binding="{Binding Path=TOTALPRICE}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock 
+                                Text="Sub Total"
+                                FontSize="18"
+                                />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn MinWidth="90" Binding="{Binding Path=PRICEOFSALE}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock 
+                                Text="Precio_Venta"
+                                FontSize="18"
+                                />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+
+                            <DataGridTextColumn MinWidth="90" Binding="{Binding Path=CATEGORY}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock 
+                                Text="Categoria"
+                                FontSize="18"         
+                            />
+
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                    <Border
+                    Grid.Column="1"
+                    Background="#FFF"
+                    >
+
+                        <StackPanel 
+                        Margin="10 0 0 0" 
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        >
+
+                            <StackPanel Margin="0 0 0 20" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                <TextBlock
+                                Text="Sub Total: "
+                                Margin="0 0 10 0"
+                                FontSize="20"    
+                             />
+
+                                <TextBox
+                                Name="SubTotalText"
+                                HorizontalAlignment="Left"
+                                Width="150"
+                            />
+                            </StackPanel>
+
+                            <StackPanel Margin="0 10 0 20" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                <TextBlock
+                                Text="ITBIS 18%: "
+                                Margin="0 0 6 0"
+                                FontSize="20"    
+                             />
+
+                                <TextBox
+                                Name="ITBISText"
+                                HorizontalAlignment="Left"
+                                Width="150"
+                            />
+
+                            </StackPanel>
+
+                            <StackPanel Margin="0 10 0 20" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                <TextBlock
+                               Text="Total :   "
+                                FontSize="20"    
+                            />
+
+                                <TextBox
+                                Name="TotalText"
+                                HorizontalAlignment="Left"
+                                Width="150"
+                                Margin="35 0 0 0"
+                            />
+
+                            </StackPanel>
+
+                            
+
+                            <Button
+                            Content="Facturar"
+                            Height="40"
+                            Margin="0 10 0 0"
+                            HorizontalAlignment="Center"
+                            Width="250" 
+                            Command="{Binding SHOWMESSAGE}">
+
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="Background" Value="#404258"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#474E68"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                                <Image
+                                                Source="C:\Users\Admin\Documents\Tutorial cSharp\MySelf Way\Personal practices\PuntoDeVenta\PuntoDeVenta\Sources\Icons\PDF-regular.png"
+                                                Height="28"
+                                                Width="38"
+                                                Margin="0 0 15 0"
+                                                VerticalAlignment="Center"
+                                            />
+
+                                                <TextBlock
+                                                Text="Descargar PDF"
+                                                FontSize="18"
+                                                TextAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Foreground="#FFF"
+                                            />
+
+                                            </StackPanel>
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                            </Button>
+
+                            <Button
+                            Content="Facturar"
+                            Height="40"
+                            Margin="0 20 0 0"
+                            HorizontalAlignment="Center"
+                            Width="250"
+                            Name="DeleteSaleButton"
+                            Command="{Binding COMMANDDELETEITEM}"
+                            CommandParameter="{Binding ElementName=GVInventary, Path=SelectedItem}"    
+                            >
+
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Border>
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="Background" Value="#EB4747"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#FF8B8B"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                                                <Image
+                                                Source="C:\Users\Admin\Documents\Tutorial cSharp\MySelf Way\Personal practices\PuntoDeVenta\PuntoDeVenta\Sources\Icons\Trash-Regular.png"
+                                                Height="28"
+                                                Width="38"
+                                                Margin="0 0 15 0"
+                                                VerticalAlignment="Center"
+                                            />
+
+                                                <TextBlock
+                                                Text="Eliminar Compra"
+                                                FontSize="18"
+                                                TextAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Foreground="#FFF"
+                                            />
+
+                                            </StackPanel>
+
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+
+                            </Button>
+
+
+                        </StackPanel>
+
+
+                    </Border>
+
+
+                </Grid>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

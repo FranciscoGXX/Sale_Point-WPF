@@ -1,0 +1,13 @@
+﻿<Application x:Class="PuntoDeVenta.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PuntoDeVenta"
+             StartupUri="Views/Logins/LoginView.xaml">
+            
+             <!--Views/Example.xaml"-->
+             <!---Views/Home/HomeView.xaml-->
+    <!---Views/Shop/CreatePurchaseView.xaml-->
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Sources\Icons\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Pattern Designe State Product\DataBase Product\DataBase Product.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Client">
+      <HintPath>..\..\Pateer Designe Builder\Client\bin\Debug\Client.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+
+	
+
+</Project>

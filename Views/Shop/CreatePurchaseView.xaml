@@ -1,0 +1,251 @@
+﻿<Window x:Class="PuntoDeVenta.Views.Shop.CreatePurchaseView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PuntoDeVenta.Views.Shop"
+        xmlns:Converter="clr-namespace:PuntoDeVenta.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+         Title="AddProductDetails" Height="400" Width="580">
+    <Window.Resources>
+        <Converter:ViewModelConverter x:Key="Converter"/>
+    </Window.Resources>
+    
+    <StackPanel>
+        
+        <Border Background="#20262E" Height="40" Margin="0 0 0 15">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                    Text="Detalles del producto"
+                    FontSize="20"
+                    FontWeight="SemiBold"
+                    VerticalAlignment="Center"
+                    Foreground="#FFF"
+                    />
+            </StackPanel>
+        </Border>
+
+        <WrapPanel Margin="0 0 0 20" HorizontalAlignment="Center">
+
+            <StackPanel Margin="0 5 0 10">
+                <TextBlock
+                    Text="Descricion Producto"
+                    Margin="0 0 0 5"
+                    />
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Width="550"
+                    Height="22"
+                    FontSize="15"
+                    Name="DescNameBox"
+                    />
+
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 10">
+                <TextBlock
+                    Text="Precio De Compra"
+                    Margin="0 0 0 5"
+                    />
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Width="270"
+                    Height="22"
+                    FontSize="15"
+                    Name="PriceOfShopBox"
+                    />
+
+            </StackPanel>
+
+            <StackPanel Margin="10 10 0 10">
+                <TextBlock
+                    Text="Cantidad"
+                    Margin="0 0 0 5"
+                    />
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Width="270"
+                    Height="22"
+                    FontSize="15"
+                    Name="AmountBox"
+                    />
+
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 10">
+                <TextBlock
+                    Text="SubTotal"
+                    Margin="0 0 0 5"
+                    />
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Width="270"
+                    Height="22"
+                    FontSize="15"
+                    Name="SubTotalBox"
+                    />
+
+            </StackPanel>
+
+            <StackPanel Margin="10 10 0 10">
+                <TextBlock
+                    Text="Precio de venta"
+                    Margin="0 0 0 5"
+                    />
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Width="270"
+                    Height="22"
+                    FontSize="15"
+                    Name="PriceOfSaleBox"
+                    />
+
+            </StackPanel>
+
+            <StackPanel Margin="0 10 0 10">
+                <TextBlock
+                    Text="Categoria"
+                    Margin="0 0 0 5"
+                    />
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Width="270"
+                    Height="22"
+                    FontSize="15"
+                    Name="CategoryBox"
+                    />
+
+            </StackPanel>
+
+            <StackPanel Margin="10 10 0 10">
+                <TextBlock
+                    Text="Codigo del Producto"
+                    Margin="0 0 0 5"
+                    />
+
+                <TextBox
+                    HorizontalAlignment="Left"
+                    Width="270"
+                    Height="22"
+                    FontSize="15"
+                    Name="CodeBox"
+                    />
+
+            </StackPanel>
+
+        </WrapPanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button
+              Margin="0 0 0 0"
+              Width="80" 
+              Height="30"
+              Click="HandlerExit"  
+             >
+
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border>
+
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#CB1C8D"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#F56EB3"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                            <StackPanel 
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                >
+
+                                <Image
+                                Source="C:\Users\Admin\Documents\Tutorial cSharp\MySelf Way\Personal practices\PuntoDeVenta\PuntoDeVenta\Sources\Icons\xmark-solid.png"    
+                                Width="15"
+                                VerticalAlignment="Center"
+                                Margin="0 0 5 0"
+                                />
+
+                                <TextBlock
+                                Text="Cancelar"
+                                VerticalAlignment="Center"
+                                />
+
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button
+              Margin="20 0 0 0"
+              Width="80" 
+              Command="{Binding COMMANDCREATESHOP}"    
+                >
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource Converter}">
+                        <Binding Path="Text" ElementName="DescNameBox"/>
+                        <Binding Path="Text" ElementName="PriceOfShopBox"/>
+                        <Binding Path="Text" ElementName="AmountBox"/>
+                        <Binding Path="Text" ElementName="SubTotalBox"/>
+                        <Binding Path="Text" ElementName="PriceOfSaleBox"/>
+                        <Binding Path="Text" ElementName="CategoryBox"/>
+                        <Binding Path="Text" ElementName="CodeBox"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border>
+
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="Background" Value="#CB1C8D"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#F56EB3"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                            <StackPanel 
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                >
+
+                                <Image
+                                Source="C:\Users\Admin\Documents\Tutorial cSharp\MySelf Way\Personal practices\PuntoDeVenta\PuntoDeVenta\Sources\Icons\floppy-disk-solid.png"
+                                Width="15"
+                                VerticalAlignment="Center"
+                                Margin="0 0 5 0"
+                                />
+
+                                <TextBlock
+                                Text="Guardar"
+                                VerticalAlignment="Center"
+                                />
+
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
+
+    </StackPanel>
+</Window>
